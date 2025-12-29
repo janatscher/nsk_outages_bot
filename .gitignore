@@ -1,0 +1,4 @@
+.env
+parser_old.py
+__pycache__/
+amvera.yml
