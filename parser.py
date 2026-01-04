@@ -5,6 +5,7 @@ main_link = 'http://051.novo-sibirsk.ru/SitePages/off.aspx'
 link_hw = 'http://051.novo-sibirsk.ru/SitePages/offfull.aspx?System=7&District=d_0JfQsNC10LvRjNGG0L7QstGB0LrQuNC5#0JfQsNC10LvRjNGG0L7QstGB0LrQuNC5'
 link_cw = 'http://051.novo-sibirsk.ru/SitePages/offfull.aspx?System=8&District=d_0JvQtdC90LjQvdGB0LrQuNC5#0JvQtdC90LjQvdGB0LrQuNC5'
 link_heat = 'http://051.novo-sibirsk.ru/SitePages/offfull.aspx?System=12&District=d_0JfQsNC10LvRjNGG0L7QstGB0LrQuNC5#0JfQsNC10LvRjNGG0L7QstGB0LrQuNC5'
+link_el = 'http://051.novo-sibirsk.ru/SitePages/offfull.aspx?System=9&District=d_0JvQtdC90LjQvdGB0LrQuNC5#0JvQtdC90LjQvdGB0LrQuNC5'
 
 def parse(utility):
     if utility == 'hw':
@@ -13,6 +14,8 @@ def parse(utility):
         response = requests.get(link_cw)
     elif utility == 'heat':
         response = requests.get(link_heat)
+    elif utility == 'el':
+        response = requests.get(link_el)
     page = BeautifulSoup(response.text, 'html.parser')
     page = page.prettify() #преттифай нужен обязательно чтобы форматирование работало
     soup = BeautifulSoup(page, 'html.parser')
@@ -25,6 +28,7 @@ def parse(utility):
     f[:f.index('Отключения систем жизнеобеспечения')+1] = ''
     f[f.index('© Мэрия г. Новосибирска, 2013-2021. Сайт разработан компанией'):] = ''
     f = ' '.join(f)
+    f = f.replace('району', 'бббб')
     f = f.split('район')
     for i in range(1, len(f)-1):
         if 'Железнодорожный' in f[i]:
@@ -56,13 +60,18 @@ def parse(utility):
         info[i] = info[i].split('  ')
         for j in range(len(info[i])):
             if 'трассы' in info[i][j]: info[i][j] = ''
-            if 'между' in info[i][j]: info[i][j] = ''
+            elif 'снабжение' in info[i][j]: info[i][j] = ''
+            elif 'Отключение ТП' in info[i][j]: info[i][j] = ''
+            elif 'между' in info[i][j]: info[i][j] = ''
+            elif 'Филиал' in info[i][j]: info[i][j] = ''
+            elif 'параметр' in info[i][j]: info[i][j] = ''
             elif 'до ' in info[i][j]: info[i][j] = ''
             elif 'ЦТП' in info[i][j]: info[i][j] = ''
             elif '+' in info[i][j]: info[i][j] = ''
             elif 'дефект' in info[i][j]: info[i][j] = ''
             elif 'Кто отключил' in info[i][j]: info[i][j] = ''
             elif '"' in info[i][j]: info[i][j] = ''
+            elif '«' in info[i][j]: info[i][j] = ''
             elif 'Горячее водоснабжение' in info[i][j]: info[i][j] = ''
             elif info[i][j] == 'Поставщик услуги': info[i][j] = ''
             elif info[i][j] == 'Поставщик услуги:': info[i][j] = ''
