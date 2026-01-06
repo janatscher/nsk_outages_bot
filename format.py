@@ -5,9 +5,9 @@ def format_message(dist_num, dist_list, info_list):
     for i in range(len(original_info)):
         if 'Дата и время начала отключения' in original_info[i]:
             formatted_info.append('\n⏳ <u>ВРЕМЯ ОТКЛЮЧЕНИЯ</u>\nНачало:\n')
-            formatted_info.append(original_info[i+1][:11]+'|'+original_info[i+1][11:] + '\n')
+            formatted_info.append(original_info[i+1][:11]+'| '+original_info[i+1][11:] + '\n')
             formatted_info.append('Окончание:\n')
-            formatted_info.append(original_info[i+3][:11]+'|'+original_info[i+3][11:] + '\n\n')
+            formatted_info.append(original_info[i+3][:11]+'| '+original_info[i+3][11:] + '\n\n')
             formatted_info.append('📋 <u>ТИП ОТКЛЮЧЕНИЯ</u>\n')
             if original_info[i+5] == 'Плановое': formatted_info.append('✅ Плановое\n\n')
             else: formatted_info.append('📛 Аварийное\n\n')
