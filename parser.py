@@ -4,7 +4,7 @@ import requests
 main_link = 'http://051.novo-sibirsk.ru/SitePages/off.aspx'
 link_hw = 'http://051.novo-sibirsk.ru/SitePages/offfull.aspx?System=7&District=d_0JfQsNC10LvRjNGG0L7QstGB0LrQuNC5#0JfQsNC10LvRjNGG0L7QstGB0LrQuNC5'
 link_cw = 'http://051.novo-sibirsk.ru/SitePages/offfull.aspx?System=8&District=d_0JvQtdC90LjQvdGB0LrQuNC5#0JvQtdC90LjQvdGB0LrQuNC5'
-link_heat = 'http://051.novo-sibirsk.ru/SitePages/offfull.aspx?System=12&District=d_0JfQsNC10LvRjNGG0L7QstGB0LrQuNC5#0JfQsNC10LvRjNGG0L7QstGB0LrQuNC5'
+link_ht = 'http://051.novo-sibirsk.ru/SitePages/offfull.aspx?System=12&District=d_0JfQsNC10LvRjNGG0L7QstGB0LrQuNC5#0JfQsNC10LvRjNGG0L7QstGB0LrQuNC5'
 link_el = 'http://051.novo-sibirsk.ru/SitePages/offfull.aspx?System=9&District=d_0JvQtdC90LjQvdGB0LrQuNC5#0JvQtdC90LjQvdGB0LrQuNC5'
 
 def parse(utility):
@@ -12,8 +12,8 @@ def parse(utility):
         response = requests.get(link_hw)
     elif utility == 'cw':
         response = requests.get(link_cw)
-    elif utility == 'heat':
-        response = requests.get(link_heat)
+    elif utility == 'ht':
+        response = requests.get(link_ht)
     elif utility == 'el':
         response = requests.get(link_el)
     page = BeautifulSoup(response.text, 'html.parser')
