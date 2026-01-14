@@ -48,7 +48,7 @@ def reply(message):
                 list_keyboard.add(telebot.types.InlineKeyboardButton(text=dist_list[i], callback_data=f'dist{i+1}_hw'))
 
         bot.send_message(chat_id, title, reply_markup=list_keyboard)
-    elif message.text == '🔵 Холодное водоснабжение':
+    if message.text == '🔵 Холодное водоснабжение':
 
         parsed = parse('cw')
         dist_list = parsed[1]
@@ -63,11 +63,10 @@ def reply(message):
         if len(dist_list) > 0:
             list_len = len(dist_list)
             for i in range(list_len):
-                list_keyboard.add(
-                    telebot.types.InlineKeyboardButton(text=dist_list[i], callback_data=f'dist{i + 1}_cw'))
+                list_keyboard.add(telebot.types.InlineKeyboardButton(text=dist_list[i], callback_data=f'dist{i+1}_cw'))
 
         bot.send_message(chat_id, title, reply_markup=list_keyboard)
-    elif message.text == '♨️ Теплоснабжение':
+    if message.text == '♨️ Теплоснабжение':
 
         parsed = parse('ht')
         dist_list = parsed[1]
@@ -82,18 +81,16 @@ def reply(message):
         if len(dist_list) > 0:
             list_len = len(dist_list)
             for i in range(list_len):
-                list_keyboard.add(
-                    telebot.types.InlineKeyboardButton(text=dist_list[i], callback_data=f'dist{i + 1}_ht'))
+                list_keyboard.add(telebot.types.InlineKeyboardButton(text=dist_list[i], callback_data=f'dist{i+1}_ht'))
 
         bot.send_message(chat_id, title, reply_markup=list_keyboard)
-    elif message.text == '💡 Электроснабжение':
+    if message.text == '💡 Электроснабжение':
 
         parsed = parse('el')
         dist_list = parsed[1]
-
         chat_id = message.chat.id
         list_keyboard = telebot.types.InlineKeyboardMarkup()
-
+        print(dist_list)
         if dist_list[0] == '':
             title = 'Информация об отключениях электроснабжения отсутствует ❌'
         else:
@@ -102,8 +99,7 @@ def reply(message):
         if len(dist_list) > 0:
             list_len = len(dist_list)
             for i in range(list_len):
-                list_keyboard.add(
-                    telebot.types.InlineKeyboardButton(text=dist_list[i], callback_data=f'dist{i + 1}_el'))
+                list_keyboard.add(telebot.types.InlineKeyboardButton(text=dist_list[i], callback_data=f'dist{i+1}_el'))
 
         bot.send_message(chat_id, title, reply_markup=list_keyboard)
 
