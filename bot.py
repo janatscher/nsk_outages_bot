@@ -22,7 +22,7 @@ def welcome(message):
     main_keyboard.row(btn_query2)
     main_keyboard.row(btn_query3)
     main_keyboard.row(btn_query4)
-    bot.send_message(chat_id, f'Здравствуйте, {user_name}', reply_markup=main_keyboard, parse_mode='HTML')
+    bot.send_message(chat_id, f'Здравствуйте, {user_name}. Для просмотра информации об отключениях нажмите на одну из кнопок ниже ⬇', reply_markup=main_keyboard, parse_mode='HTML')
 
 all_data = {} #parsed[0]
 dist_list = [] #parsed[1]
