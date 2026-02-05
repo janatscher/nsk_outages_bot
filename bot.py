@@ -90,7 +90,7 @@ def reply(message):
         dist_list = parsed[1]
         chat_id = message.chat.id
         list_keyboard = telebot.types.InlineKeyboardMarkup()
-        print(dist_list)
+
         if dist_list[0] == '':
             title = 'Информация об отключениях электроснабжения отсутствует ❌'
         else:
@@ -118,7 +118,7 @@ link_ht_keyboard.add(btn_link_ht)
 #электроснабжение
 link_el_keyboard = telebot.types.InlineKeyboardMarkup()
 btn_link_el = telebot.types.InlineKeyboardButton(text='↪️ Перейти на сайт', url=link_el)
-link_ht_keyboard.add(btn_link_el)
+link_el_keyboard.add(btn_link_el)
 
 def info_message(dist_num_utility):
     utility = dist_num_utility[-2:]
