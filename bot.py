@@ -26,7 +26,7 @@ def welcome(message):
 
 all_data = {} #parsed[0]
 dist_list = [] #parsed[1]
-info_list = [1] #для замены в 59 строке и тд; parsed[2]
+info_list = [1] #индекс для замены; parsed[2]
 
 @bot.message_handler(func=lambda message: True)
 def reply(message):
